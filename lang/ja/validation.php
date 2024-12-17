@@ -219,6 +219,7 @@ return [
         'message' => 'メッセージ',
         'middle_name' => 'ミドルネーム',
         'minute' => '分',
+        'memo' => 'メモ',
         'mobile' => '携帯',
         'month' => '月',
         'name' => '名前',
