@@ -3,8 +3,8 @@
 </script>
 
 <template>
-<!-- <h1>Inertiaテストです。</h1>
-<a href="/">aタグ経由です</a><br>
-<Link href="/">Link経由です</Link><br> -->
+<div v-if="$page.props.flash.message" class="bg-blue-300">
+  {{ $page.props.flash.message }}
+</div>
 aaaa
 </template>
