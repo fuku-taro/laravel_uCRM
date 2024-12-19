@@ -2,9 +2,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import FlashMessage from '@/Components/FlashMessage.vue';
+import Pagination from '@/Components/Pagination.vue';
 
 defineProps({
-  customers: Array
+  customers: Object
 })
 </script>
 
@@ -26,7 +27,9 @@ defineProps({
                           <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
                             <Link as="button" :href="route('customers.create')" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">顧客登録</Link>
                           </div>
-
+                          
+                          <!-- ページネーション -->
+                          <Pagination class="mb-6" :links="customers.links" />
                           <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                             <table class="table-auto w-full text-left whitespace-no-wrap">
                               <thead>
@@ -46,15 +49,13 @@ defineProps({
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr v-for="customer in customers" :key="customer.id">
+                                <tr v-for="customer in customers.data" :key="customer.id">
                                   <td class="border-b-2 border-gray-200 px-4 py-3">
                                       {{ customer.id }}
                                   </td>
                                   <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.name }}</td>
                                   <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.kana }}</td>
-                                  <td class="border-b-2 border-gray-200 px-4 py-3">
-                                    {{ customer.tel }}
-                                  </td>
+                                  <td class="border-b-2 border-gray-200 px-4 py-3">{{ customer.tel }}</td>
                                 </tr>
                                 
                               </tbody>
@@ -62,6 +63,8 @@ defineProps({
                           </div>
 
                         </div>
+                        <!-- ページネーション -->
+                        <Pagination class="mt-6" :links="customers.links" />
                       </section>
                     </div>
                 </div>
