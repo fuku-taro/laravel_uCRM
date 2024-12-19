@@ -1,13 +1,13 @@
 ## Laravel + Vue3 　 MAMP環境で学習の記録
 
-##インストール
+## インストール
 composer install
 npm install && npm run dev
 .env.exampleを .envにコピー
 .envのDB関連、sanctum, sessionなどの情報を編集
 php artisan key:generate
 
-##開発中の簡易サーバー
+## 開発中の簡易サーバー
 サーバー側
 php artisan serve
 
