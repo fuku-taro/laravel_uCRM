@@ -1,10 +1,13 @@
 ## Laravel + Vue3 　 MAMP環境で学習の記録
 
-３つのコマンドを実行してください
+２つのコマンドを実行してください
 
 ```
 php artisan migrate --seed
 php artisan serve
+```
+別のターミナルウィンドウより以下のコマンドを実行してください
+```
 npm run dev
 ```
 
