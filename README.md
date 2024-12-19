@@ -5,7 +5,7 @@
 composer install
 npm install && npm run dev
 .env.exampleを .envにコピー
-.envのDB関連、sanctum, sessionなどの情報を編集
+.envのDB関連情報を編集
 php artisan key:generate
 ```
 
@@ -21,4 +21,4 @@ npm run dev
 ```
 ２つのコマンドを実行してください
 
-トップページからユーザー登録を行いログイン後、商品管理タグより商品の登録、編集、削除ができます
+トップページからユーザー登録を行いログイン後、管理タグより登録、編集、削除ができます
