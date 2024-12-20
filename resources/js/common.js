@@ -1,4 +1,7 @@
 const nl2br = (str) => {
+  // nullだったら処理をしない
+  if(str === null) return;
+
   str = str.replace(/\r\n/g, "<br />");
   str = str.replace(/(\n|\r)/g, "<br />");
   return str;
