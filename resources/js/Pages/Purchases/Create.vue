@@ -7,10 +7,6 @@ import { Inertia } from '@inertiajs/inertia';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import MicroModal from '@/Components/MicroModal.vue';
 
-// defineProps({
-//   errors: Object
-// })
-
 const props = defineProps({
   'customers': Array,
   'items': Array,
