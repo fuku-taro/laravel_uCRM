@@ -5,12 +5,12 @@ import { onMounted, ref, reactive } from 'vue'
 const search = ref('')
 const customers = reactive({})
 
-onMounted(() => {
-  axios.get('/api/user')
-  .then( res  => {
-    console.log(res)
-  })
-})
+// onMounted(() => {
+//   axios.get('/api/user')
+//   .then( res  => {
+//     console.log(res)
+//   })
+// })
 const isShow = ref(false)
 
 const toggleStatus = () => { isShow.value = !isShow.value}
@@ -19,7 +19,7 @@ const searchCustomers = async () => {
 try{
   await axios.get(`/api/searchCustomers/?search=${search.value}`)
   .then( res => {
-  console.log(res.data)
+  // console.log(res.data)
   customers.value = res.data
 })
   toggleStatus()
