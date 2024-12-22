@@ -13,9 +13,9 @@ const props = defineProps({
   orders: Object
 })
 
-onMounted(() => {
-  console.log(props.orders.data)
-})
+// onMounted(() => {
+//   console.log(props.orders.data)
+// })
 </script>
 
 <template>
@@ -37,7 +37,7 @@ onMounted(() => {
 
                           <!-- 検索ボタン -->
                           <div>
-                            <TextInput type="text" name="search" v-model="search" placeholder="カナもしくは電話番号" class="w-100"/>
+                            <TextInput type="text" name="search" v-model="search" placeholder="カナ名で検索" class="w-100"/>
                             <button class="bg-blue-300 text-white py-2 px-2"
                             @click="searchCustomers">検索</button>
                           </div>
@@ -68,7 +68,11 @@ onMounted(() => {
                             </thead>
                             <tbody>
                               <tr v-for="order in props.orders.data" :key="order.id">
-                                <td class="border-b-2 border-gray-200 px-4 py-3">{{ order.id }}</td>
+                                <td class="border-b-2 border-gray-200 px-4 py-3">
+                                  <Link class="text-blue-400" :href="route('purchases.show', { purchase: order.id })">
+                                    {{ order.id }}
+                                  </Link>
+                                </td>
                                 <td class="border-b-2 border-gray-200 px-4 py-3">{{ order.customer_name }}</td>
                                 <td class="border-b-2 border-gray-200 px-4 py-3">{{ order.total }}</td>
                                 <td class="border-b-2 border-gray-200 px-4 py-3">{{ order.status }}</td>
