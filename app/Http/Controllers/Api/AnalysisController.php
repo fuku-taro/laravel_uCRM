@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use App\Http\Services\AnalysisService;
 
 class AnalysisController extends Controller
 {
@@ -16,20 +16,7 @@ class AnalysisController extends Controller
         $subQuery = Order::betweenDate($request->startDate, $request->endDate);
 
         if($request->type === 'perDay'){
-            $subQuery->where('status', true)
-            ->groupBy('id')
-            ->selectRaw(
-                'id,
-                sum(subtotal) as totalPerPurchase,
-                DATE_FORMAT(created_at, "%Y%m%d") as date' );
-
-            $data = DB::table($subQuery)
-            ->groupBy('date')
-            ->selectRaw('date, sum(totalPerPurchase) as total')
-            ->get();
-
-            $labels = $data->pluck('date');
-            $totals = $data->pluck('total');
+            list($data, $labels, $totals) = AnalysisService::perDay($subQuery);
         }
 
         // Ajax通信のためJsonで返却する
