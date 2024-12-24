@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 
-class AnalysisService
+class AnalysisRepository
 {
-  public static function perDay($subQuery)
+  public function getPerDay($subQuery)
   {
     $query = $subQuery->where('status', true)
             ->groupBy('id')
@@ -20,17 +20,10 @@ class AnalysisService
             ->selectRaw('date, sum(totalPerPurchase) as total')
             ->get();
 
-    $labels = $data->pluck('date');
-    $totals = $data->pluck('total');
-
-    return [
-      $data,
-      $labels,
-      $totals
-    ];
+    return $data;
   }
 
-  public static function perMonth($subQuery)
+  public function getPerMonth($subQuery)
   {
     $query = $subQuery->where('status', true)
             ->groupBy('id')
@@ -44,17 +37,10 @@ class AnalysisService
             ->selectRaw('date, sum(totalPerPurchase) as total')
             ->get();
 
-    $labels = $data->pluck('date');
-    $totals = $data->pluck('total');
-
-    return [
-      $data,
-      $labels,
-      $totals
-    ];
+    return $data;
   }
 
-  public static function perYear($subQuery)
+  public function getPerYear($subQuery)
   {
     $query = $subQuery->where('status', true)
             ->groupBy('id')
@@ -68,13 +54,6 @@ class AnalysisService
             ->selectRaw('date, sum(totalPerPurchase) as total')
             ->get();
 
-    $labels = $data->pluck('date');
-    $totals = $data->pluck('total');
-
-    return [
-      $data,
-      $labels,
-      $totals
-    ];
+    return $data;
   }
 }

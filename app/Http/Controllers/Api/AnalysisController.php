@@ -6,25 +6,30 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Order;
-use Illuminate\Support\Facades\DB;
-use App\Http\Services\AnalysisService;
+use App\Services\AnalysisService;
 
 class AnalysisController extends Controller
 {
+    private $analysisService;
+    //コンストラクタ
+    public function __construct(AnalysisService $analysisService)
+    {
+        $this->analysisService = $analysisService;
+    }
     public function index(Request $request)
     {
         $subQuery = Order::betweenDate($request->startDate, $request->endDate);
 
         if($request->type === 'perDay'){
-            list($data, $labels, $totals) = AnalysisService::perDay($subQuery);
+            list($data, $labels, $totals) = $this->analysisService->perDay($subQuery);
         }
 
         if($request->type === 'perMonth'){
-            list($data, $labels, $totals) = AnalysisService::perMonth($subQuery);
+            list($data, $labels, $totals) = $this->analysisService->perMonth($subQuery);
         }
 
         if($request->type === 'perYear'){
-            list($data, $labels, $totals) = AnalysisService::perYear($subQuery);
+            list($data, $labels, $totals) = $this->analysisService->perYear($subQuery);
         }
 
         // Ajax通信のためJsonで返却する
