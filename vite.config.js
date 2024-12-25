@@ -17,4 +17,11 @@ export default defineConfig({
             },
         }),
     ],
+        //serverのところを追記
+    server: {
+        host: true,
+        hmr: {
+        host: "localhost",
+        },
+    },
 });
