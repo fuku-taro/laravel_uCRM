@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: "nginx"
+    build:
+      dockerfile: "./docker/nginx/Dockerfile"
+    ports:
+      - "8900:80"
+    volumes:
+      - "./:/var/www/html"
+
+  app:
+    container_name: "app"
+    mem_limit: 6g
+    build:
+      dockerfile: "./docker/php/Dockerfile"
+    volumes:
+      - "./:/var/www/html"
+    ports:
+      - 5173:5173
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION:-mysql}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_DATABASE=${DB_DATABASE:-laravel-ucrm}
+      - DB_USERNAME=${DB_USERNAME:-laravel-ucrm}
+      - DB_PASSWORD=${DB_PASSWORD:-password123}
+  
+  db:
+    container_name: db
+    build:
+      dockerfile: "./docker/db/Dockerfile"
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-laravel_ucrm}
+      - MYSQL_USER=${DB_USER:-laravel_ucrm}
+      - MYSQL_PASSWORD=${DB_PASS:-password123}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-password123}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_USERNAME: ${DB_USER:-laravel_ucrm}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-password123}
+
+volumes:
+  mysql_data:
