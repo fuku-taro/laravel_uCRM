@@ -1,6 +1,5 @@
 version: "3"
-volumes:
-  mysql_data:
+
 services:
   nginx:
     container_name: "nginx"
@@ -39,8 +38,6 @@ services:
       - MYSQL_USER=${DB_USER:-laravel_ucrm}
       - MYSQL_PASSWORD=${DB_PASS:-password123}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-password123}
-    # volumes:
-    #   - "./docker/db/data:/var/lib/mysql"
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -53,3 +50,6 @@ services:
       PMA_HOST: db
       MYSQL_USERNAME: ${DB_USER:-laravel_ucrm}
       MYSQL_ROOT_PASSWORD: ${DB_PASS:-password123}
+
+volumes:
+  mysql_data:
