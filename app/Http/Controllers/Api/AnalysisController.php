@@ -8,16 +8,23 @@ use Illuminate\Http\Response;
 use App\Models\Order;
 use App\Services\AnalysisService;
 use App\Services\DecileService;
+use App\Services\RFMService;
 
 class AnalysisController extends Controller
 {
     private $analysisService;
     private $decileService;
+    private $rfmService;
     //コンストラクタ
-    public function __construct(AnalysisService $analysisService, DecileService $decileService)
+    public function __construct(
+        AnalysisService $analysisService,
+        DecileService $decileService,
+        RFMService $rfmService
+        )
     {
         $this->analysisService = $analysisService;
         $this->decileService = $decileService;
+        $this->rfmService = $rfmService;
     }
     public function index(Request $request)
     {
@@ -37,6 +44,17 @@ class AnalysisController extends Controller
 
         if($request->type === 'decile'){
             list($data, $labels, $totals) = $this->decileService->decile($subQuery);
+        }
+
+        if($request->type === 'rfm'){
+            list($data, $totals, $eachCount) = $this->rfmService->rfm($subQuery, $request->rfmPrms);
+
+            return response()->json([
+                'data' => $data,
+                'type' => $request->type,
+                'eachCount' => $eachCount,
+                'totals' => $totals,
+            ], Response::HTTP_OK);
         }
         // Ajax通信のためJsonで返却する
         return response()->json([
