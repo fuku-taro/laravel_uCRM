@@ -1,5 +1,5 @@
 <template>
     <div>
-        <img src="/images/logo.png" alt="">
+        <img src="/images/uCRM_logo.png" alt="">
     </div>
 </template>
