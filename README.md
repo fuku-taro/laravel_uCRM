@@ -1,4 +1,4 @@
-## Laravel + Vue3 　 MAMP 環境で学習の記録
+## Laravel + Vue3 　 Docker 環境で学習の記録
 
 ## ダウンロード方法
 
