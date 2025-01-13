@@ -120,8 +120,6 @@ const setCustomerId = id => {
                                       <option v-for="q in quantity" :value="isNaN(q) ? 0 : q">{{ q }}</option>
                                     </select>
                                   </td>
-                                  {{ console.log(item.price) }}
-                                  {{ console.log(item.quantity) }}
                                   <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price * item.quantity }}</td>
                                 </tr>
                                 

@@ -12,10 +12,10 @@ const props = defineProps({
   errors: Object
 })
 
-onMounted(() => {
-  console.log(props.items)
-  console.log(props.order)
-})
+// onMounted(() => {
+//   console.log(props.items)
+//   console.log(props.order)
+// })
 
 </script>
 

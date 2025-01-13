@@ -31,21 +31,14 @@ const props = defineProps({
               <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                   <div class="p-6 text-gray-900">
                     <section class="text-gray-600 body-font">
+                      <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+                      <FlashMessage />
+                      </div>
                       <div class="container px-5 py-8 mx-auto">
-                        <FlashMessage />
-                        <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
-
-                          <!-- 検索ボタン -->
-                          <div>
-                            <TextInput type="text" name="search" v-model="search" placeholder="カナ名で検索" class="w-100"/>
-                            <button class="bg-blue-300 text-white py-2 px-2"
-                            @click="searchCustomers">検索</button>
-                          </div>
-                        </div>
-                        
-                        <!-- ページネーション -->
                         <Pagination class="mb-6" :links="props.orders.links" />
                         <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+  
+                          <!-- ページネーション -->
                           <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                               <tr>
