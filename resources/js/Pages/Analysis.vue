@@ -69,6 +69,16 @@ const getData = async () => {
                             From: <input type="date" name="startDate" v-model="form.startDate">
                             To: <input type="date" name="endDate" v-model="form.endDate">
                             <br>
+                            
+                            <div v-if="form.type === 'decile'" class="mt-3">
+                                <h3>デシル分析とは</h3>
+                                <p>デシル分析は、顧客や商品のデータを売上や利益などの指標に基づいて10等分（デシル）に分け、各グループの特徴を分析する手法です。上位10%を「デシル1」、次の10%を「デシル2」…と分類し、特に上位グループの貢献度や下位グループの改善点を把握します。</p>
+                            </div>
+
+                            <div v-if="form.type === 'rfm'" class="mt-3">
+                                <h3>RFM分析とは</h3>
+                                <p>RFM分析は、顧客を「購入履歴」に基づいて評価し、顧客の価値を分類・分析するマーケティング手法です。「Recency（最近の購入時期）」「Frequency（購入頻度）」「Monetary（購入金額）」の3つの指標を用います。</p>
+                            </div>
 
                             <div v-if="form.type === 'rfm'" class="my-8">
                                 <table class="mx-auto">
